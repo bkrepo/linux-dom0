@@ -821,7 +821,6 @@ void __init setup_arch(char **cmdline_p)
 	arm_dt_init_cpu_maps();
 	psci_init();
 #ifdef CONFIG_SMP
-#if 1
         if (is_smp()) {
               if (psci_smp_available())
                    smp_set_ops(&psci_smp_ops);
@@ -829,12 +828,6 @@ void __init setup_arch(char **cmdline_p)
                    smp_set_ops(mdesc->smp);
                smp_init_cpus();
         }
-#else
-	if (is_smp()) {
-		smp_set_ops(mdesc->smp);
-		smp_init_cpus();
-	}
-#endif
 #endif
 
 	if (!is_smp())
